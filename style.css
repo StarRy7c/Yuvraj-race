@@ -1,0 +1,212 @@
+/* General Body and Game Container Styling */
+body {
+    margin: 0;
+    overflow: hidden; /* Prevent scrollbars */
+    background-color: #0a0a1f; /* Dark blue/purple for night theme */
+    color: #e0e0e0;
+    font-family: 'Arial', sans-serif; /* Or a more futuristic font */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    touch-action: none; /* Disable browser default touch actions like zoom */
+}
+
+#gameContainer {
+    position: relative;
+    width: 100%;
+    max-width: 450px; /* Max width for mobile-friendliness, adjust as needed */
+    aspect-ratio: 9 / 16; /* Common mobile aspect ratio */
+    overflow: hidden;
+    background: linear-gradient(to bottom, #000010, #1a1a3a 70%, #333355); /* Night sky gradient */
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.5), 0 0 60px rgba(0, 150, 255, 0.3);
+    border: 2px solid #00ffff;
+    border-radius: 10px;
+}
+
+#gameCanvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: transparent; /* Canvas itself is transparent, background set on container */
+}
+
+/* UI Elements (Score, Distance) */
+#uiContainer {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 10;
+    font-size: 1.2em;
+    text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff;
+}
+
+#scoreBoard, #distanceBoard {
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: 1px solid #00c0c0;
+}
+
+/* Screens (Start & Game Over) */
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 10, 0.85); /* Semi-transparent dark overlay */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 20;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.game-title {
+    font-size: 3em;
+    color: #00ffff;
+    text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00aaff, 0 0 40px #00aaff;
+    margin-bottom: 20px;
+    animation: pulseTitle 2s infinite alternate;
+}
+
+.game-intro {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    color: #cccccc;
+}
+
+.game-over-text {
+    font-size: 2.5em;
+    color: #ff003c;
+    text-shadow: 0 0 10px #ff003c, 0 0 20px #ff003c;
+    animation: shakeGameOver 0.5s ease-in-out; /* Animation on display */
+    margin-bottom: 15px;
+}
+
+.screen p {
+    font-size: 1.3em;
+    margin: 10px 0;
+}
+
+/* Buttons (Glowing & Neon) */
+.glowing-button, .neon-button {
+    padding: 12px 25px;
+    font-size: 1.2em;
+    color: #ffffff;
+    background-color: #0077ff;
+    border: 2px solid #00ffff;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, inset 0 0 5px #00ffff;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease;
+    margin-top: 20px;
+}
+
+.glowing-button:hover, .neon-button:hover {
+    background-color: #0099ff;
+    box-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff, 0 0 40px #00aaff, inset 0 0 10px #00ffff;
+    transform: translateY(-2px);
+}
+
+.glowing-button:active, .neon-button:active {
+    transform: translateY(0px);
+    box-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, inset 0 0 3px #00ffff;
+}
+
+/* On-screen Controls */
+#controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none; /* Initially hidden, shown via JS for touch devices */
+    gap: 20px;
+    z-index: 15;
+}
+
+.control-button {
+    width: 60px;
+    height: 60px;
+    font-size: 2em;
+    background-color: rgba(0, 120, 120, 0.7);
+    border: 1px solid #00ffff;
+    color: #00ffff;
+}
+
+/* Animations */
+@keyframes pulseTitle {
+    from {
+        text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00aaff, 0 0 40px #00aaff;
+    }
+    to {
+        text-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff, 0 0 45px #00aaff, 0 0 60px #00aaff, 0 0 70px #ff00ff;
+    }
+}
+
+@keyframes shakeGameOver {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px) rotate(-2deg); }
+    50% { transform: translateX(5px) rotate(2deg); }
+    75% { transform: translateX(-3px) rotate(-1deg); }
+}
+
+/* Dynamic Background Elements (Stars, Streetlights - conceptual) */
+/* These would typically be drawn on canvas, but simple CSS animations can add to the effect */
+.stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none; /* So they don't interfere with clicks */
+    z-index: -1; /* Behind canvas content if not drawn on canvas */
+}
+
+.star {
+    position: absolute;
+    background-color: white;
+    border-radius: 50%;
+    animation: twinkle 2s infinite alternate;
+    /* JS will position these */
+}
+
+@keyframes twinkle {
+    from { opacity: 0.3; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1.2); }
+}
+
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .game-title {
+        font-size: 2.5em;
+    }
+    #uiContainer {
+        font-size: 1em;
+    }
+    .glowing-button, .neon-button {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+    #controls {
+        display: flex; /* Show on-screen controls for smaller screens */
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    /* Specifically for touch devices, ensure controls are visible */
+    #controls {
+        display: flex;
+    }
+}
