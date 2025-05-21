@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Night Racer 2D</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="gameContainer">
+        <canvas id="gameCanvas"></canvas>
+
+        <div id="uiContainer">
+            <div id="scoreBoard">Score: <span id="score">0</span></div>
+            <div id="distanceBoard">Distance: <span id="distance">0</span>m</div>
+        </div>
+
+        <div id="startScreen" class="screen">
+            <h1 class="game-title">Night Racer</h1>
+            <p class="game-intro">Use ARROW KEYS or SWIPE to drive.</p>
+            <button id="startButton" class="glowing-button">Start Game</button>
+        </div>
+
+        <div id="gameOverScreen" class="screen" style="display: none;">
+            <h2 class="game-over-text">Game Over</h2>
+            <p>Your Score: <span id="finalScore">0</span></p>
+            <p>Distance: <span id="finalDistance">0</span>m</p>
+            <button id="retryButton" class="glowing-button">Retry</button>
+        </div>
+
+        <div id="controls">
+            <button id="controlLeft" class="control-button neon-button">&lt;</button>
+            <button id="controlRight" class="control-button neon-button">&gt;</button>
+        </div>
+    </div>
+
+    <audio id="engineSound" loop src="path/to/your/engine-sound.mp3" preload="auto"></audio>
+    <audio id="crashSound" src="path/to/your/crash-sound.wav" preload="auto"></audio>
+    <audio id="winSound" src="path/to/your/win-sound.wav" preload="auto"></audio> <audio id="backgroundMusic" loop src="path/to/your/background-music.mp3" preload="auto"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
